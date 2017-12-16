@@ -35,7 +35,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="<?= base_url() ?>/Main/login" method="post">
+    <form action="<?= base_url() ?>/Admin_main/login" method="post">
       <div class="form-group <?php if($error) echo 'has-error'; else echo 'has-feedback' ;?>">
         <input type="email" name="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
