@@ -58,7 +58,7 @@
             <?php
               foreach ($attributes as $at) {
                 echo "<tr>";
-                  echo '<td>'.$at->field_name.'</td>';
+                  echo '<td>'.stripcslashes($at->field_name).'</td>';
                   echo '<td>
                     <form action="'.base_url().'/Admin_items/item_attributes" method="post">
                       <input name="field_id" value="'.$at->id.'" hidden>
