@@ -12,6 +12,7 @@ class Customer_main extends CI_Controller
     {
         if(isset($_POST['submit'])) {
             $this->load->library('form_validation');
+
             $first_name = trim($this->input->post('customer_first_name'));
             $last_name = trim($this->input->post('customer_last_name'));
             $company = trim($this->input->post('customer_company'));
@@ -39,7 +40,7 @@ class Customer_main extends CI_Controller
             $this->form_validation->set_rules('customer_address_2', 'Street Address', 'required');
             $this->form_validation->set_rules('customer_address_3', 'City', 'required');
             $this->form_validation->set_rules('customer_email', 'Email', 'trim|required|valid_email|is_unique[customer.id]');
-            $this->form_validation->set_rules('account_password', 'Password', 'required');
+            $this->form_validation->set_rules('account_password', 'Password', 'required|min_length[3]');
             $this->form_validation->set_rules('account_password_conf', 'Password Confirmation', 'trim|required|matches[account_password]');
 
             if ($this->form_validation->run() == FALSE)
@@ -83,9 +84,50 @@ class Customer_main extends CI_Controller
         }
     }
 
+    function login() {
+        if(isset($_SESSION['customer'])) {
+            header('location: '.site_url('Customer_main/index'));
+        }
+        elseif (isset($_POST['submit'])) {
+            $email = trim($this->input->post('email'));
+            $password = trim($this->input->post('password'));
+
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required');
+
+            $data = array(
+                'email' => $email,
+                'password' => $password
+            );
+            $this->load->model('Customer_model');
+            $result = $this->Customer_model->authenticate($data);
+
+            if ($result == 1) {
+                $this->session->set_userdata('customer', $data['email']);
+                $this->session->set_flashdata('message', 'Login Successful');
+            }
+            else {
+                $this->session->set_flashdata('message', 'Login failed');
+                redirect('Customer_main/login');
+            }
+            redirect('Customer_main/index');
+        }
+        else {
+            $this->_load();
+            $this->load->view('Customer/login');
+        }
+    }
+
+    function logout() {
+        $this->session->sess_destroy();
+        redirect('Customer_main/index');
+    }
+
     private function _load()
     {
         $this->load->view('Customer/head');
         $this->load->view('Customer/navbar');
     }
+
 }

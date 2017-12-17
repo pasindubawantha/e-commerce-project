@@ -44,4 +44,15 @@ class Customer_model extends CI_Model
             return 1;
         }
     }
+
+    function authenticate($data) {
+        $query = $this->db->get_where('customer',array('id' => $data['email']));
+        if ($query->num_rows() > 0) {
+            $row = $query->row();
+            if (password_verify($data['password'], $row->password_hash)) {
+                return 1;
+            }
+        }
+        return 0;
+    }
 }
