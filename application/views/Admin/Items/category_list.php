@@ -58,7 +58,7 @@
             <?php
               foreach ($categories as $c) {
                 echo "<tr>";
-                  echo '<td>'.$c->name.'</td>';
+                  echo '<td>'.stripcslashes($c->name).'</td>';
                   echo '<td>
                     <a href="'.base_url().'/Admin_items/categories_edit/'.$c->id.'" class="btn btn-block btn-info">Edit
                     </a>

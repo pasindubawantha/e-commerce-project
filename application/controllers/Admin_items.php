@@ -94,14 +94,95 @@ class Admin_items extends CI_Controller
     {
         if(isset($_SESSION['user']))
         {
+            //delete image
+            if(isset($_POST['delete_image']))
+            {
+                $result = $this->Item_model->delete_image($_POST['delete_image']);
+                if($result)
+                {
+                    $data['success'] = true;
+                    $data['message'] = "Successfully deleted image";
+                }
+                else
+                {
+                    $data['fail'] = true;
+                    $data['message'] = "Failed to delete image";
+                }
+            }
+
+            //delete item
+            if(isset($_POST['delete_item']))
+            {
+                $result = $this->Item_model->delete_item($item_id);
+                if($result)
+                {
+                    $data['success'] = true;
+                    $data['message'] = "Successfully deleted item";
+                    redirect(base_url().'/Admin_items','refresh');
+                }
+                else
+                {
+                    $data['fail'] = true;
+                    $data['message'] = "Failed to delete item";
+                }
+            }
+
+            //update item
+            if(isset($_POST['update_item']))
+            {
+                $item['id'] = $item_id;
+                $item['name'] = $_POST['item_name'];
+                $item['description'] = $_POST['item_description'];
+                $item['unit'] = $_POST['item_unit'];
+                $item['price'] = $_POST['price'];
+                $item['category_id'] = $_POST['category'];
+                $details = array();
+                $attributes = $this->Item_model->get_item_fields();
+                foreach ($attributes as $a) {
+                    if($_POST['attribute_'.$a->id] != "")
+                    {
+                        array_push($details, array('field_name'=>$a->field_name, 'field_value'=>$_POST['attribute_'.$a->id]));
+                    }
+                }
+                $images = array();
+                foreach ($_FILES as $file) {
+                    if($file['name'] != "")
+                    {
+                        array_push($images, $file);
+                    }
+                }
+                $item['images'] = $images;
+                $item['details'] = $details;
+
+                $result = $this->Item_model->update_item($item);
+                if($result)
+                {
+                    $data['success'] = true;
+                    $data['message'] = "Successfully updated item";
+                }
+                else
+                {
+                    $data['fail'] = true;
+                    $data['message'] = "Failed to update item";
+                }
+            }
 
 
             $data['item'] = $this->Item_model->get_item($item_id);
+            $item_attributes_array = $this->Item_model->get_item_details($item_id);
+            $item_attributes = array();
+            foreach ($item_attributes_array as $a) {
+                $item_attributes[$a->field_name] = $a->field_value;
+            }
+            $data['item_attributes'] = $item_attributes;
+            $data['item_images'] = $this->Item_model->get_item_images($item_id);
+            $data['categories'] = $this->Item_model->get_all_categories();
+            $data['attributes'] = $this->Item_model->get_item_fields();
             $data['page'] = array('header'=>'Edit item', 'description'=>$data['item']->name,'app_name'=>'Items');
             $data['user'] = $_SESSION['user'];
             $data['apps'] = $_SESSION['apps'];
             $data['tabs'] = $this->make_tabs();
-
+            $data['text_areas'] = array('item_description');
             $this->load->view('template/admin_header',$data);
             $this->load->view('Admin/Items/item_edit', $data);
             $this->load->view('template/admin_footer', $data);

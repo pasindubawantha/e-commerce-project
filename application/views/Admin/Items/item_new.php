@@ -38,7 +38,8 @@
           <div class="form-group">
             <label for="category_name" class="col-sm-2 control-label">Description</label>
             <div class="col-sm-10">
-              <input class="form-control" name="item_description" placeholder="Description" type="text" required>
+            <textarea class="textarea" placeholder="Description" name="item_description" rows="10" cols="80" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+            </textarea>
             </div>
           </div>
           <div class="form-group">

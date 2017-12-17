@@ -112,6 +112,8 @@
 <script src="<?php echo base_url(); ?>/assets/js/dataTables.bootstrap.min.js"></script>
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>/assets/js/select2.full.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo base_url(); ?>/assets/js/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- highcharts -- >
 <!--[if lt IE 9]>
 <script src="<?php echo base_url(); ?>/assets/js/oldie.js"></script>
@@ -145,6 +147,10 @@
 
     //select2
     $('.select2').select2();
+
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5();
+
     <?php
       //data tables
       echo "<!-- data tales --> \n";
@@ -158,6 +164,16 @@
       }
 
       echo "\n \n <!-- data tales --> \n";
+
+      // //CKEDITOR text area
+      // echo "<!-- text areas --> \n";
+
+      // foreach ($text_areas as $t) {
+      //   echo '$(".textarea").wysihtml5();';
+      // }
+
+      // echo "\n \n <!-- text areas --> \n";
+
       //donut charts
       if(isset($donut_charts))
       {
