@@ -5,7 +5,9 @@ class Customer_main extends CI_Controller
     function index()
     {
         $this->_load();
-        $this->load->view('Customer/home');
+        $this->load->model('Customer_model');
+        $data['items'] = $this->Customer_model->get_item_list_with_image();
+        $this->load->view('Customer/home',$data);
         $this->load->view('Customer/footer');
     }
 
@@ -127,6 +129,16 @@ class Customer_main extends CI_Controller
     function logout() {
         $this->session->sess_destroy();
         redirect('Customer_main/index');
+    }
+
+    function single($id='') {
+        if ($id != '') {
+            $this->_load();
+            $this->load->model('Item_model');
+            $data['item'] = $this->Item_model->get_item($id);
+            $this->load->view('Customer/single',$data);
+            $this->load->view('Customer/footer');
+        }
     }
 
     private function _load()

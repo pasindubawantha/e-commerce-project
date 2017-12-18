@@ -55,4 +55,23 @@ class Customer_model extends CI_Model
         }
         return 0;
     }
+
+    public function get_item_list_with_image()
+    {
+        $query = $this->db->get_where('item', array('active'=>1));
+        $items = $query->result();
+        $ret_ary = array();
+        foreach ($items as $i)
+        {
+            $query = $this->db->get_where('item_image', array('item_id'=>$i->id));
+
+            $image = $query->row()->id;
+            $new_i = (array)$i;
+            $new_i['image_id'] = $image;
+            $new_i = (object)$new_i;
+            array_push($ret_ary, $new_i);
+
+        }
+        return $ret_ary;
+    }
 }
