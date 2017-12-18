@@ -58,14 +58,19 @@ class Customer_model extends CI_Model
 
     public function get_item_list_with_image()
     {
-        $query = $this->db->get_where('item', array('active'=>1));
+        $this->db->order_by('id','desc');
+        $query = $this->db->get_where('item', array('active'=>1), 8);
         $items = $query->result();
         $ret_ary = array();
         foreach ($items as $i)
         {
             $query = $this->db->get_where('item_image', array('item_id'=>$i->id));
-
-            $image = $query->row()->id;
+            if ($query->num_rows() <= 0) {
+                $image = 0;
+            }
+            else {
+                $image = $query->row()->id;
+            }
             $new_i = (array)$i;
             $new_i['image_id'] = $image;
             $new_i = (object)$new_i;
