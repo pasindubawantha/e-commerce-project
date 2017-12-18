@@ -1,7 +1,7 @@
 <h2>Register</h2>
 
-
-<form>
+<?php echo validation_errors(); ?>
+<?php echo form_open('Customer_main/registration', 'autocomplete="off"'); ?>
 <p id="customer_first_name_field" class="form-row form-row-first validate-required">
     <label class="" for="customer_first_name">First Name <abbr title="required" class="required">*</abbr>
     </label>
@@ -21,29 +21,31 @@
 </p>
 
 <p id="customer_address_1_field" class="form-row form-row-wide address-field validate-required">
-    <label class="" for="customer_address_1">Address <abbr title="required" class="required">*</abbr>
+    <label class="" for="customer_address_1">Billing Address 1 <abbr title="required" class="required">*</abbr>
     </label>
-    <input type="text" value="" placeholder="Street address" id="customer_address_1" name="customer_address_1" class="input-text ">
+    <input type="text" value="" placeholder="Number" id="customer_address_1" name="customer_address_1" class="input-text ">
 </p>
 
 <p id="customer_address_2_field" class="form-row form-row-wide address-field">
-    <input type="text" value="" placeholder="Apartment, suite, unit etc. (optional)" id="customer_address_2" name="customer_address_2" class="input-text ">
+    <input type="text" value="" placeholder="Street Address" id="customer_address_2" name="customer_address_2" class="input-text ">
 </p>
 
-<p id="customer_city_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
-    <label class="" for="customer_city">Town / City <abbr title="required" class="required">*</abbr>
-    </label>
-    <input type="text" value="" placeholder="Town / City" id="customer_city" name="customer_city" class="input-text ">
+<p id="customer_address_2_field" class="form-row form-row-wide address-field">
+    <input type="text" value="" placeholder="City" id="customer_address_3" name="customer_address_3" class="input-text ">
 </p>
 
-<p id="customer_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-    <label class="" for="customer_state">County</label>
-    <input type="text" id="customer_state" name="customer_state" placeholder="State / County" value="" class="input-text ">
-</p>
-<p id="customer_postcode_field" class="form-row form-row-last address-field validate-required validate-postcode" data-o_class="form-row form-row-last address-field validate-required validate-postcode">
-    <label class="" for="customer_postcode">Postcode <abbr title="required" class="required">*</abbr>
+<p id="customer_address_1_field" class="form-row form-row-wide address-field validate-required">
+    <label class="" for="customer_address_1">Billing Address 2
     </label>
-    <input type="text" value="" placeholder="Postcode / Zip" id="customer_postcode" name="customer_postcode" class="input-text ">
+    <input type="text" value="" placeholder="Number" id="customer_address_2_1" name="customer_address_2_1" class="input-text ">
+</p>
+
+<p id="customer_address_2_field" class="form-row form-row-wide address-field">
+    <input type="text" value="" placeholder="Street Address" id="customer_address_2_2" name="customer_address_2_2" class="input-text ">
+</p>
+
+<p id="customer_address_2_field" class="form-row form-row-wide address-field">
+    <input type="text" value="" placeholder="City" id="customer_address_2_3" name="customer_address_2_3" class="input-text ">
 </p>
 
 <div class="clear"></div>
@@ -59,16 +61,18 @@
     </label>
     <input type="text" value="" placeholder="" id="customer_phone" name="customer_phone" class="input-text ">
 </p>
-<div class="clear"></div>
 
+<p id="account_password_field" class="form-row validate-required">
+    <label class="" for="account_password">Account password <abbr title="required" class="required">*</abbr>
+    </label>
+    <input type="password" value="" placeholder="Password" id="account_password" name="account_password" class="input-text">
+</p>
+<p id="account_password_field" class="form-row validate-required">
+    <label class="" for="account_password">Retype password <abbr title="required" class="required">*</abbr>
+    </label>
+    <input type="password" value="" placeholder="Password" id="account_password_conf" name="account_password_conf" class="input-text">
+</p>
 
-<div class="create-account">
-    <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
-    <p id="account_password_field" class="form-row validate-required">
-        <label class="" for="account_password">Account password <abbr title="required" class="required">*</abbr>
-        </label>
-        <input type="password" value="" placeholder="Password" id="account_password" name="account_password" class="input-text">
-    </p>
-    <div class="clear"></div>
-</div>
-</form>
+<input type="submit" name="submit" value="submit">
+
+<?php form_close(); ?>
