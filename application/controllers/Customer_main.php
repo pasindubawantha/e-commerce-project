@@ -6,6 +6,7 @@ class Customer_main extends CI_Controller
     {
         $this->_load();
         $this->load->view('Customer/home');
+        $this->load->view('Customer/footer');
     }
 
     function registration()
@@ -96,22 +97,26 @@ class Customer_main extends CI_Controller
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
             $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
-            $data = array(
-                'email' => $email,
-                'password' => $password
-            );
-            $this->load->model('Customer_model');
-            $result = $this->Customer_model->authenticate($data);
-
-            if ($result == 1) {
-                $this->session->set_userdata('customer', $data['email']);
-                $this->session->set_flashdata('message', 'Login Successful');
+            if ($this->form_validation->run() == false) {
+                $this->_load();
+                $this->load->view('Customer/login');
             }
             else {
-                $this->session->set_flashdata('message', 'Login failed');
-                redirect('Customer_main/login');
+                $data = array(
+                    'email' => $email,
+                    'password' => $password
+                );
+                $this->load->model('Customer_model');
+                $result = $this->Customer_model->authenticate($data);
+
+                if ($result == 1) {
+                    $this->session->set_userdata('customer', $data['email']);
+                } else {
+                    $this->session->set_flashdata('message', 'Login failed');
+                    redirect('Customer_main/login');
+                }
+                redirect('Customer_main/index');
             }
-            redirect('Customer_main/index');
         }
         else {
             $this->_load();

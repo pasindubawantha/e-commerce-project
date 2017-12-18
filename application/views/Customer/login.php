@@ -1,3 +1,7 @@
+<h2>Login</h2>
+
+<?php echo validation_errors(); ?>
+
 <?php echo form_open('Customer_main/login','autocomplete = "off"'); ?>
 
 <div class="form-group">
