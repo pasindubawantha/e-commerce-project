@@ -10,13 +10,15 @@
                         <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                         <li><a href="<?php echo site_url('Customer_main/registration'); ?>"><i class="fa fa-user"></i> Registration</a></li>
 
-                        <?php if(isset($this->session->customer)) { ?>
-                            <li><a href="<?php echo site_url('Customer_main/logout'); ?>"><i class="fa fa-user"></i> LogOut</a></li>
-                            <li style="float: right;"><a href="#"><i class="fa fa-user"></i> <?php echo $this->session->customer; ?></a></li>
-                        <?php }
-                        else { ?>
-                        <li><a href="<?php echo site_url('Customer_main/login'); ?>"><i class="fa fa-user"></i> Login</a></li>
-                        <? } ?>
+                        <?php if(isset($this->session->customer)) {
+                            echo '<li><a href="'.site_url('Customer_main/logout').'">
+                                <i class="fa fa-user"></i> LogOut</a></li>';
+                            echo '<li style="float: right;"><a href="#">
+                                <i class="fa fa-user"></i>'.$this->session->customer.'</a></li>';
+                        }
+                        else {
+                        echo '<li><a href="'.site_url('Customer_main/login').'"><i class="fa fa-user"></i> Login</a></li>';
+                        } ?>
                     </ul>
                 </div>
             </div>

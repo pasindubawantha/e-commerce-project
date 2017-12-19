@@ -130,25 +130,25 @@
                     <h2 class="section-title">Latest Products</h2>
                     <div class="product-carousel">
 
-                        <?php foreach ($items as $row) { ?>
+                        <?php foreach ($items as $row)
+                        {
 
-                        <div class="col-md-3 col-sm-6">
+                        echo '<div class="col-md-3 col-sm-6">
                             <div class="single-shop-product">
                                 <div class="product-upper">
-                                    <img src="<?php echo site_url('Main/image/item/'.$row->image_id); ?>" alt="">
+                                    <img src="'.site_url('Main/image/item/'.$row->image_id).' alt="">
                                 </div>
-                                <h2><a href="<?php echo site_url('Customer_main/single/'.$row->id); ?>"><? echo $row->name; ?></a></h2>
+                                <h2><a href="'.site_url('Customer_main/single/'.$row->id).'">'.$row->name.'</a></h2>
                                 <div class="product-carousel-price">
-                                    <ins>$ <? echo $row->price; ?></ins>
+                                    <ins>$ '.$row->price.'</ins>
                                 </div>
                                 <div class="product-option-shop">
                                     <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow"
-                                       href="<?php echo site_url('Customer_main/single/'.$row->id); ?>">Add to cart</a>
+                                       href="'.site_url('Customer_main/single/'.$row->id).'">Add to cart</a>
                                 </div>
                             </div>
-                        </div>
-
-                        <? } ?>
+                        </div>';
+                    } ?>
 
 
                     </div>
