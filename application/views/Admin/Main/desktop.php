@@ -30,7 +30,7 @@
     </a>
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
-    <a href="<?= base_url(); ?>/Admin_items" >
+    <a id="items" href="<?= base_url(); ?>Admin_items" >
       <div class="info-box">
         <span class="info-box-icon bg-aqua"><i class="fa fa-fw fa-cube"></i></span>
         <div class="info-box-content">
