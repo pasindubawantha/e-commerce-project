@@ -91,7 +91,7 @@ class Admin_inventory extends CI_Controller
     function make_tabs()
     {
         //Stock
-        $tab1 = array('name'=>'Stock','link'=>base_url().'/Admin_inventory/', 'icon'=>'fa fa-cubes');
+        $tab1 = array('name'=>'Stock','link'=>base_url().'/Admin_inventory/', 'icon'=>'ffa a-cubes');
         //Stock log
         $tab2 = array('name'=>'Stock log','link'=>base_url().'/Admin_inventory/stock_log', 'icon'=>'fa fa-tasks');
 
