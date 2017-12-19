@@ -1,4 +1,42 @@
-<? var_dump($item); ?>
+<!-- Modal -->
+<div class="modal fade" id="LoginModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Login to your account</h4>
+            </div>
+            <div class="modal-body">
+                <?php echo validation_errors(); ?>
+
+                <?php echo form_open('Customer_main/login','autocomplete = "on"'); ?>
+
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" name="email" style="width: 100%;padding: 5px;">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" style="width: 100%;padding: 5px;">
+                </div>
+
+                <button type="submit" class="button" name="submit">Login</button>
+
+                <?php echo form_close(); ?>
+
+            </div>
+            <div class="modal-body">
+                <h5>New here? <a href="<?php echo site_url('Customer_main/registration'); ?>">Register</a></h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
@@ -68,47 +106,47 @@
                         <div class="col-sm-6">
                             <div class="product-images">
                                 <div class="product-main-img">
-                                    <img src="img/product-2.jpg" alt="">
+                                    <img src="<?php echo site_url('Main/image/item/'.$image); ?>" alt="">
                                 </div>
 
-                                <div class="product-gallery">
-                                    <img src="img/product-thumb-1.jpg" alt="">
-                                    <img src="img/product-thumb-2.jpg" alt="">
-                                    <img src="img/product-thumb-3.jpg" alt="">
-                                    <img src="img/product-thumb-4.jpg" alt="">
-                                </div>
+<!--                                <div class="product-gallery">-->
+<!--                                    <img src="img/product-thumb-1.jpg" alt="">-->
+<!--                                    <img src="img/product-thumb-2.jpg" alt="">-->
+<!--                                    <img src="img/product-thumb-3.jpg" alt="">-->
+<!--                                    <img src="img/product-thumb-4.jpg" alt="">-->
+<!--                                </div>-->
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="product-inner">
-                                <h2 class="product-name"></h2>
+                                <h2 class="product-name"><? echo $item->name; ?></h2>
                                 <div class="product-inner-price">
-                                    <ins>$700.00</ins> <del>$800.00</del>
+                                    <ins style="font-size: x-large;">$ <? echo $item->price; ?></ins>
                                 </div>
 
-                                <form action="" class="cart">
+<!--                                <form action="" class="cart" id="add_to_cart_form">-->
+                                <div class="woocommerce-info" style="font-size: medium;">
                                     <div class="quantity">
-                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1" id="quantity">
                                     </div>
-                                    <button class="add_to_cart_button" type="submit">Add to cart</button>
-                                </form>
+                                    <button type="button" name="add_cart" class="add_to_cart_button" data-productname="<? echo $item->name; ?>" data-price="<? echo $item->price; ?>"
+                                            data-productid="<? echo $item->id; ?>">Add to Cart</button>                                </div>
+<!--                                </form>-->
 
-                                <div class="product-inner-category">
-                                    <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
-                                </div>
+<!--                                <div class="product-inner-category">-->
+<!--                                    <p>Category: <a href="">--><?// echo $item->category_id; ?><!--</a> </p>-->
+<!--                                </div>-->
 
                                 <div role="tabpanel">
                                     <ul class="product-tab" role="tablist">
                                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-                                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Details</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="home">
                                             <h2>Product Description</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tristique, diam in consequat iaculis, est purus iaculis mauris, imperdiet facilisis ante ligula at nulla. Quisque volutpat nulla risus, id maximus ex aliquet ut. Suspendisse potenti. Nulla varius lectus id turpis dignissim porta. Quisque magna arcu, blandit quis felis vehicula, feugiat gravida diam. Nullam nec turpis ligula. Aliquam quis blandit elit, ac sodales nisl. Aliquam eget dolor eget elit malesuada aliquet. In varius lorem lorem, semper bibendum lectus lobortis ac.</p>
-
-                                            <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
+                                            <p><? echo $item->description; ?></p>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
                                             <h2>Reviews</h2>
@@ -139,97 +177,8 @@
 
 
                     <div class="related-products-wrapper">
-                        <h2 class="related-products-title">Related Products</h2>
+<!--                        <h2 class="related-products-title">Related Products</h2>-->
                         <div class="related-products-carousel">
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-1.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="">Sony Smart TV - 2015</a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>$700.00</ins> <del>$800.00</del>
-                                </div>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-2.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="">Apple new mac book 2015 March :P</a></h2>
-                                <div class="product-carousel-price">
-                                    <ins>$899.00</ins> <del>$999.00</del>
-                                </div>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-3.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="">Apple new i phone 6</a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>$400.00</ins> <del>$425.00</del>
-                                </div>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-4.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="">Sony playstation microsoft</a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>$200.00</ins> <del>$225.00</del>
-                                </div>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-5.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="">Sony Smart Air Condtion</a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>$1200.00</ins> <del>$1355.00</del>
-                                </div>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-6.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-
-                                <h2><a href="">Samsung gallaxy note 4</a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>$400.00</ins>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -237,3 +186,45 @@
         </div>
     </div>
 </div>
+
+<script>
+
+$(document).ready(function() {
+
+    $('.add_to_cart_button').click(function() {
+        console.log('click');
+        <?php if(isset($this->session->customer)) { ?>
+        var product_id = $(this).data("productid");
+        var product_name = $(this).data("productname");
+        var product_price = $(this).data("price");
+        var product_image = <?php echo $image; ?>;
+        var product_quantity = $('#quantity').val();
+        console.log("quantity is " + product_quantity);
+        if(product_quantity != '' && product_quantity > 0)
+        {
+            console.log("1");
+            $.ajax({
+                url:"<?php echo site_url('Cart_controller/add_item_to_cart'); ?>",
+                method:"POST",
+                data:{product_id:product_id, product_name:product_name, product_price:product_price,
+                    product_image:product_image, product_quantity:product_quantity},
+                success:function(data)
+                {
+                    console.log(data + " is data");
+                    alert("Product Added into Cart");
+//                    $('#cart_details').html(data);
+//                    $('#' + product_id).val('');
+                }
+            });
+        }
+        else {
+            alert("Please Enter quantity");
+        }
+        <?php } else { ?>
+        $('#LoginModal').modal('show');
+        <? } ?>
+    })
+
+})
+
+</script>

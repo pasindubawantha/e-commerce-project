@@ -84,6 +84,7 @@ class Customer_main extends CI_Controller
         else {
             $this->_load();
             $this->load->view('Customer/register');
+            $this->load->view('Customer/footer');
         }
     }
 
@@ -124,6 +125,7 @@ class Customer_main extends CI_Controller
             $this->_load();
             $this->load->view('Customer/login');
         }
+        $this->load->view('Customer/footer');
     }
 
     function logout() {
@@ -134,10 +136,29 @@ class Customer_main extends CI_Controller
     function single($id='') {
         if ($id != '') {
             $this->_load();
-            $this->load->model('Item_model');
-            $data['item'] = $this->Item_model->get_item($id);
+            $this->load->model('Customer_model');
+            $data['item'] = $this->Customer_model->get_item($id);
+            $data['image'] = $this->Customer_model->get_item_image($id);
             $this->load->view('Customer/single',$data);
             $this->load->view('Customer/footer');
+        }
+        else {
+            $this->_load();
+            $this->load->view('Customer/home');
+            $this->load->view('Customer/footer');
+        }
+    }
+
+    function cart() {
+        if(isset($this->session->customer)) {
+            $this->_load();
+            $this->load->model('Cart_model');
+            $data['cart'] = $this->Cart_model->get_cart();
+            $this->load->view('Customer/cart',$data);
+            $this->load->view('Customer/footer');
+        }
+        else {
+            redirect('Customer_main/login');
         }
     }
 
