@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/ionicons.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>
     <!-- Theme style -->
 <!--    <link rel="stylesheet" href="--><?//= base_url() ?><!--assets/css/AdminLTE.min.css">-->
 

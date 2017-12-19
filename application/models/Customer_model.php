@@ -79,4 +79,21 @@ class Customer_model extends CI_Model
         }
         return $ret_ary;
     }
+
+    function get_item($id)
+    {
+        $query = $this->db->get_where('item', array('id'=>$id));
+        return $query->row();
+    }
+
+    function get_item_image($id) {
+        $query = $this->db->get_where('item_image', array('item_id'=>$id));
+        if ($query->num_rows() <= 0) {
+            return 0;
+        }
+        else {
+            return $query->row()->id;
+        }
+    }
+
 }

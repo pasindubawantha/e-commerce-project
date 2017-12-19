@@ -82,11 +82,11 @@
 
 
 <!-- jQuery sticky menu -->
-<script src="<?php echo base_url(); ?>assets/js/owl.carousel.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.sticky.js"></script>
-
-<!-- jQuery easing -->
-<script src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.min.js"></script>
-
-<!-- Main Script -->
-<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+<!--<script src="--><?php //echo base_url(); ?><!--assets/js/owl.carousel.min.js"></script>-->
+<!--<script src="--><?php //echo base_url(); ?><!--assets/js/jquery.sticky.js"></script>-->
+<!---->
+<!--<!-- jQuery easing -->-->
+<!--<script src="--><?php //echo base_url(); ?><!--assets/js/jquery.easing.1.3.min.js"></script>-->
+<!---->
+<!--<!-- Main Script -->-->
+<!--<script src="--><?php //echo base_url(); ?><!--assets/js/main.js"></script>-->

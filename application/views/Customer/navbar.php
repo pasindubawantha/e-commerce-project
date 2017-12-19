@@ -9,11 +9,14 @@
                         <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
                         <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                         <li><a href="<?php echo site_url('Customer_main/registration'); ?>"><i class="fa fa-user"></i> Registration</a></li>
-                        <li><a href="<?php echo site_url('Customer_main/login'); ?>"><i class="fa fa-user"></i> Login</a></li>
-                        <li><a href="<?php echo site_url('Customer_main/logout'); ?>"><i class="fa fa-user"></i> LogOut</a></li>
+
                         <?php if(isset($this->session->customer)) { ?>
-                            <li><a href="#"><i class="fa fa-user"></i> <?php echo $this->session->customer; ?></a></li>
-                        <?php } ?>
+                            <li><a href="<?php echo site_url('Customer_main/logout'); ?>"><i class="fa fa-user"></i> LogOut</a></li>
+                            <li style="float: right;"><a href="#"><i class="fa fa-user"></i> <?php echo $this->session->customer; ?></a></li>
+                        <?php }
+                        else { ?>
+                        <li><a href="<?php echo site_url('Customer_main/login'); ?>"><i class="fa fa-user"></i> Login</a></li>
+                        <? } ?>
                     </ul>
                 </div>
             </div>
@@ -33,7 +36,7 @@
 
             <div class="col-sm-6">
                 <div class="shopping-item">
-                    <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                    <a href="<?php echo site_url('Customer_main/cart'); ?>">Cart - <span class="cart-amunt" id="cart_total_display"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count">*</span></a>
                 </div>
             </div>
         </div>
@@ -55,7 +58,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo site_url('Customer_main/index'); ?>">Home</a></li>
-                    <li><a href="<?php echo site_url('Shopping_cart/index'); ?>">Cart</a></li>
+                    <li><a href="<?php echo site_url('Customer_main/cart'); ?>">Cart</a></li>
                     <li><a href="#">Checkout</a></li>
                     <li><a href="#">Category</a></li>
                     <li><a href="#">About</a></li>
